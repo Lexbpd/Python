@@ -1,17 +1,20 @@
-# Problema: contar cuántas veces aparece una palabra en un archivo de texto.
-# Uso: python contar_palabra.py archivo.txt palabra
-
 import sys
 
-# Entrada (argumentos al ejecutar el script)
 nombre_archivo = sys.argv[1]
 palabra = sys.argv[2]
 
-# Proceso
 archivo = open(nombre_archivo, "r", encoding="utf-8")
 texto = archivo.read()
 archivo.close()
-repeticiones = texto.count(palabra)
 
-# Salida
+texto = texto.lower()
+palabra_buscada = palabra.lower()
+
+signos = '.,;:!?¡¿"\'«»()-—…'
+for signo in signos:
+    texto = texto.replace(signo, " ")
+
+lista_palabras = texto.split()
+repeticiones = lista_palabras.count(palabra_buscada)
+
 print(palabra + ": " + str(repeticiones))
